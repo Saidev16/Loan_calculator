@@ -51,15 +51,10 @@ const App = () => {
 
     useEffect(() => {
         if (selectedProduct) {
-            const monthlyInterestRate = selectedProduct.interest / 1200 // Convert to decimal and monthly rate
-            const loanFactor = (1 + monthlyInterestRate) ** months
-
-            const monthlyInstallment =
-                (loanAmount * monthlyInterestRate * loanFactor) / (loanFactor - 1)
-            setMonthlyInstallment(monthlyInstallment)
-
-            const total = monthlyInstallment * months
+            const interestAmount = loanAmount * selectedProduct.interest
+            const total = loanAmount + interestAmount
             setTotalAmount(total)
+            setMonthlyInstallment(total / months)
         }
     }, [selectedProduct, loanAmount, months])
 
