@@ -48,6 +48,17 @@ export default (env, argv) => {
                     ],
                     use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
                 },
+                {
+                    test: /\.(png|jpg|gif)$/i,
+                    use: [
+                        {
+                            loader: "url-loader",
+                            options: {
+                                limit: 8192,
+                            },
+                        },
+                    ],
+                },
             ],
         },
         optimization: {
